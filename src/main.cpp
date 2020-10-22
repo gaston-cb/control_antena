@@ -42,6 +42,7 @@ void setup() {
   if (Ethernet.begin(mac) == 0)
   {
     pinMode(4,OUTPUT) ; 
+    pinMode(85,OUTPUT) ; 
    Serial.print(F("Fallo DHCP"));
     
   } else {
