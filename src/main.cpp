@@ -9,7 +9,7 @@
 /*---------Puertos PWM 2 ------------------*/
 #define PWM21 5   
 #define PWM22 65
-
+#define HOLAM "holita" 
 // Definicion de pines Azimuth y declinacion 
 #define AZIMUTH A1      // pin analogico para azimuth 
 #define DECLINACION A0  // pin analogico para declinacion  
