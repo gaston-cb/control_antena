@@ -1,19 +1,18 @@
 #include <Arduino.h>
 #include <Ethernet.h> 
+#include <LiquidCrystal_I2C.h> 
+#include <configTCPportsandOutput.h> 
+#include <bridgeH.h>
+#include <calib_control_antenna.h> 
 
 
 
-/*---------Puertos PWM 1-------------------*/
-#define PWM11 9   
-#define PWM12 10  
-/*---------Puertos PWM 2 ------------------*/
-#define PWM21 5   
-#define PWM22 65
-#define HOLAM "holita" 
-// Definicion de pines Azimuth y declinacion 
-#define AZIMUTH A1      // pin analogico para azimuth 
-#define DECLINACION A0  // pin analogico para declinacion  
-// fin definicion lectura de pines -- 
+LiquidCrystal_I2C lcd(0x3F, 16, 2); 
+
+bridgeH bridge_az (PWM11,PWM12)  ; 
+bridgeH bridge_H (PWM21,PWM22)  ; 
+
+
 /*variables config */
 char state_con = 0 ;  // state_con = 0 -- no conectado a Gpredict -- state_con = 1 conectado a Gpredict 
 int gpredict_azimuth = 0 ; 
@@ -26,28 +25,35 @@ int declinacion_act = 0  ;
 // fin  config  
 
 //Definicion de servidores y puertos 
-EthernetServer Gpredict_rotator(4532) ;// socket tcp/ip para Gpredict 
-EthernetServer stelarium(10001) ;      // socket tcp/ip para stelarium 
+EthernetServer Gpredict_rotator(PORTGPREDICT) ;// socket tcp/ip para Gpredict 
+EthernetServer stelarium(PORTSTELARIUM) ;      // socket tcp/ip para stelarium 
 // fin definicion de servidores 
 
 
 
 
 void setup() {
-  Serial.begin(9600) ; 
-  digitalWrite(8,HIGH) ; 
-  byte mac [] = {0x00, 0xCD, 0xEF, 0xEE, 0xAA, 0xBC}; // dirmac
-  Ethernet.init(4); 
-  delay(250) ; 
-  if (Ethernet.begin(mac) == 0)
-  {
-    pinMode(4,OUTPUT) ; 
-    pinMode(85,OUTPUT) ; 
-   Serial.print(F("Fallo DHCP"));
-    
-  } else {
-    Serial.print(Ethernet.localIP());
-  }
+  lcd.init() ;
+  lcd.backlight();
+  lcd.clear() ;
+  lcd.print(F("calibrando")) ; 
+  lcd.setCursor(0,1); 
+  lcd.print(F("antena")); 
+  bridge_az.moveS1() ; 
+  bridge_H.moveS1() ; 
+  while (calibrate()){}
+  delay(500) ; 
+  bridge_az.moveS2() ; 
+  bridge_H.moveS2() ; 
+  
+
+  //FUNCION DE CALUBRACION 
+
+
+
+
+
+
 
 }
 

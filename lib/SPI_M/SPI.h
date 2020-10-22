@@ -15,7 +15,7 @@
 #define _SPI_H_INCLUDED
 
 #include <Arduino.h>
-#include "D:\proyecto_final\codigo_arduino_ethernet_Timer\ethernet_timer\tiempo.h" 
+#include "tiempo.h" 
 // SPI_HAS_TRANSACTION means SPI has beginTransaction(), endTransaction(),
 // usingInterrupt(), and SPISetting(clock, bitOrder, dataMode)
 #define SPI_HAS_TRANSACTION 1
