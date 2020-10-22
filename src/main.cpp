@@ -8,7 +8,7 @@
 #define PWM12 10  
 /*---------Puertos PWM 2 ------------------*/
 #define PWM21 5   
-#define PWM22 6  
+#define PWM22 65
 
 // Definicion de pines Azimuth y declinacion 
 #define AZIMUTH A1      // pin analogico para azimuth 
