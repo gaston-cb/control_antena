@@ -41,14 +41,18 @@ void setup() {
   lcd.print(F("antena")); 
   bridge_az.moveS1() ; 
   bridge_H.moveS1() ; 
+  //FUNCION DE CALUBRACION 
+
   while (calibrate()){}
   delay(500) ; 
   bridge_az.moveS2() ; 
   bridge_H.moveS2() ; 
+  while (calibrate()){} ;
+
+  
   
 
-  //FUNCION DE CALUBRACION 
-
+  
 
 
 
