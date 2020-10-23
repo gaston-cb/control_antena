@@ -3,7 +3,7 @@
 #include <LiquidCrystal_I2C.h> 
 #include <configTCPportsandOutput.h> 
 #include <bridgeH.h>
-#include <calib_control_antenna.h> 
+#include <calib_control_antenna.cpp> 
 
 
 
@@ -42,12 +42,12 @@ void setup() {
   bridge_az.moveS1() ; 
   bridge_H.moveS1() ; 
   //FUNCION DE CALUBRACION 
-
-  while (calibrate()){}
+  helloword() ; 
+//  calibrate() ; 
   delay(500) ; 
   bridge_az.moveS2() ; 
   bridge_H.moveS2() ; 
-  while (calibrate()){} ;
+  //while (calibrate()){} ;
 
   
   
