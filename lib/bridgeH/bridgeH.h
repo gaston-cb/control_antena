@@ -10,7 +10,7 @@ private:
     char p4 ;               // 11 
 public:
        bridgeH(char pin1 , char pin2);
-    
+    void getPs(); 
     void setPS(char pmax) ; 
     void moveS1();  // move h to az or west - est 
     void moveS2();  // move inverse s1 

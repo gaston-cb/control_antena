@@ -1,3 +1,1 @@
-
-bool calibrate() ; 
-void helloword() ; 
+bool calibrate(char i);

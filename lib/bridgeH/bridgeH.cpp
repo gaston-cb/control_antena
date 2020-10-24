@@ -50,3 +50,11 @@ void bridgeH::parkAnt()
    _state_bridge = 00 ;  
      
 }
+
+
+void bridgeH::getPs()
+{
+   Serial.print("posiciones: ") ; 
+   Serial.println(p1,DEC) ;Serial.print("  ") ; 
+   Serial.print(p2,DEC) ; 
+} 
